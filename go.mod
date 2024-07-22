@@ -1,3 +1,3 @@
-module github.com/madan03/go-web-app
+module github.com/iam-veeramalla/go-web-app
 
 go 1.18
