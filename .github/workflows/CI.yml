@@ -77,7 +77,7 @@ jobs:
         payload: |
          {
             "channel": "#meeting1",
-            "text": "Docker Image Build and Push Notification",
+            "text": "Docker Image Build and Push the image into the docker hub please check the docker hub",
             "attachments": [
               {
                 "color": "good",
