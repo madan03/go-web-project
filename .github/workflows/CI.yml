@@ -70,4 +70,39 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/go-web-app:${{github.run_id}}
 
+    - name: send slack notification
+      if: success()
+      uses: slackapi/slack-github-action@v1.23.0
+      with:
+        payload: |
+         {
+            "channel": "#meeting1",
+            "attachments": [
+              {
+                "color": "good",
+                "pretext": "CI/CD Pipeline Notification",
+                "title": "Docker Image Build and Push",
+                "text": "The Docker image has been successfully built and pushed.",
+                "fields": [
+                  {
+                    "title": "Repository",
+                    "value": "${{ github.repository }}",
+                    "short": true
+                  },
+                  {
+                    "title": "Tag",
+                    "value": "${{ secrets.DOCKERHUB_USERNAME }}/go-web-app:${{ github.run_id }}",
+                    "short": true
+                  }
+                ]
+              }
+            ]
+          }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} 
+
+
+
+     
+
   
